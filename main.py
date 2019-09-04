@@ -1,6 +1,7 @@
 import praw
 import spotipy
 import spotipy.util as util
+import os
 # Songs should be in the format:
 # (Artist) - (Song)
 # Therefore splitting at '-' and stripping whitespace
@@ -20,18 +21,23 @@ def non_BMP_check(title):
 
 
 def main():
-    reddit = praw.Reddit('bot')
+    reddit = praw.Reddit(client_id=os.environ['reddit_client_id'],
+                         client_secret=os.environ['reddit_client_secret'],
+                         password='',
+                         user_agent='Music Bot 0.1',
+                         username='')
 
     subreddit = reddit.subreddit('House')
 
 
     scope = 'user-library-read'
-    #token = util.prompt_for_user_token('ry2gg4eh81ep1v42b1r6mubtw', scope,
-                                       #client_id='1f6597e91b714ae4abe73a175b8a76d2',
-                                       #client_secret='689d718acb5349ae8856f21bbd518437')
-    spotify = spotipy.Spotify()
+    token = util.prompt_for_user_token('ry2gg4eh81ep1v42b1r6mubtw', scope,
+                                       client_id='1f6597e91b714ae4abe73a175b8a76d2',
+                                       client_secret='689d718acb5349ae8856f21bbd518437',
+                                       redirect_uri='http://localhost/')
+    spotify = spotipy.Spotify(auth=token)
 
-    
+
     titles = []
     for submission in subreddit.top('month', limit=None):
         if (submission.media is not None
@@ -42,9 +48,9 @@ def main():
 
             titles.append(submission.title)
 
-    results = spotify.search(q=titles[0], type='track')
-    print(results)
-    
+    results = spotify.search(q=titles[0], type='track', limit=1)
+    print(results['tracks'])
+
 
 
 if __name__ == '__main__':
