@@ -84,40 +84,41 @@ def main():
     spotify = spotipy.Spotify(auth=token)
     top_month_id = '4Bb3DFSGOgamSYfnKpVJ8S'
     top_all_id = '3qImki1ZEdujDkcrlCY9QB'
-    """
-    titles = []
-    for submission in subreddit.top('month', limit=None):
-        if (submission.media is not None
-            and valid_artist_and_song(submission.title,
-                                      submission.media)
-            and submission.score >= 10
-            and non_BMP_check(submission.title)
-            and track_id_check(submission.title)):
+    while True:
+        titles = []
+        for submission in subreddit.top('month', limit=None):
+            if (submission.media is not None
+                and valid_artist_and_song(submission.title,
+                                          submission.media)
+                and submission.score >= 10
+                and non_BMP_check(submission.title)
+                and track_id_check(submission.title)):
 
-            titles.append(submission.title)
-    unfounds = spotify_search_and_add(spotify, titles, top_month_id, username)
-    # Remove (Date) and [Label] common tags from unfound list
-    unfounds = list(map(remove_date, list(map(remove_label, unfounds))))
-    unfounds = spotify_search_and_add(spotify, unfounds, top_month_id, username)
-    # Remove (Extra Info) common tags from unfound list
-    unfounds = list(map(remove_extra_info, unfounds))
-    unfounds = spotify_search_and_add(spotify, unfounds, top_month_id, username)
-    for submission in subreddit.top('all', limit=None):
-        if (submission.media is not None
-            and valid_artist_and_song(submission.title,
-                                      submission.media)
-            and submission.score >= 50
-            and non_BMP_check(submission.title)
-            and track_id_check(submission.title)):
+                titles.append(submission.title)
+        unfounds = spotify_search_and_add(spotify, titles, top_month_id, username)
+        # Remove (Date) and [Label] common tags from unfound list
+        unfounds = list(map(remove_date, list(map(remove_label, unfounds))))
+        unfounds = spotify_search_and_add(spotify, unfounds, top_month_id, username)
+        # Remove (Extra Info) common tags from unfound list
+        unfounds = list(map(remove_extra_info, unfounds))
+        unfounds = spotify_search_and_add(spotify, unfounds, top_month_id, username)
+        for submission in subreddit.top('all', limit=None):
+            if (submission.media is not None
+                and valid_artist_and_song(submission.title,
+                                          submission.media)
+                and submission.score >= 50
+                and non_BMP_check(submission.title)
+                and track_id_check(submission.title)):
 
-            titles.append(submission.title)
-    unfounds = spotify_search_and_add(spotify, titles, top_all_id, username)
-    # Remove (Date) and [Label] common tags from unfound list
-    unfounds = list(map(remove_date, list(map(remove_label, unfounds))))
-    unfounds = spotify_search_and_add(spotify, unfounds, top_all_id, username)
-    # Remove (Extra Info) common tags from unfound list
-    unfounds = list(map(remove_extra_info, unfounds))
-    unfounds = spotify_search_and_add(spotify, unfounds, top_all_id, username)
+                titles.append(submission.title)
+        unfounds = spotify_search_and_add(spotify, titles, top_all_id, username)
+        # Remove (Date) and [Label] common tags from unfound list
+        unfounds = list(map(remove_date, list(map(remove_label, unfounds))))
+        unfounds = spotify_search_and_add(spotify, unfounds, top_all_id, username)
+        # Remove (Extra Info) common tags from unfound list
+        unfounds = list(map(remove_extra_info, unfounds))
+        unfounds = spotify_search_and_add(spotify, unfounds, top_all_id, username)
+        time.sleep(3600)
 
 
 
