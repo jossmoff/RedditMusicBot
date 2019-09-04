@@ -1,1 +1,1 @@
-RedditMusicBot
+MusicBot
