@@ -10,7 +10,6 @@ import os
 # (Artist) - (Song)
 # Therefore splitting at '-' and stripping whitespace
 # Should give us a valid song title
-
 def valid_artist_and_song(title, media):
   if '-' in title:
       if len(title) <= 80:
@@ -27,16 +26,11 @@ def non_BMP_check(title):
 def track_id_check(title):
     return not ('TRACK ID' in title.upper() or 'TRACKID' in title.upper())
 
-
+# Checks to see the song isn't in the playlist already
 def check_duplicate_track_id(spotify, id, username, track_id):
     results = spotify.user_playlist_tracks(username, playlist_id=id)
     return (track_id in str(results))
 
-def last_occurance_index(string, item):
-    return len(string) - 1 - string[::-1].index(item)
-
-def next_occurance_index(string, index, item):
-    return string[index:].index(item) + 1 + index
 
 # Tracks can not be found based on extra info being added on the end
 # Be it dates or just plaintext that can obscure search
@@ -57,7 +51,7 @@ def remove_extra_info(title):
         title = remove_extra_info(title)
     return title
 
-
+# Adds song if not already in playlsit
 def spotify_search_and_add(spotify, titles, playlist_id, username):
     unfounds = []
     for title in titles:
@@ -95,6 +89,8 @@ def main():
     spotify = spotipy.Spotify(auth=token)
     top_month_id = os.environ['SPOTIFY_MONTHLY_ID']
     top_all_id = os.environ['SPOTIFY_ALL_ID']
+
+    #Main App Loop
     while True:
         titles = []
         for submission in subreddit.top('month', limit=None):
@@ -130,6 +126,7 @@ def main():
         # Remove (Extra Info) common tags from unfound list
         unfounds = list(map(remove_extra_info, unfounds))
         unfounds = spotify_search_and_add(spotify, unfounds, top_all_id, username)
+        # Waits an hour then refreshes
         time.sleep(3600)
 
 
