@@ -83,8 +83,8 @@ def main():
                                        client_secret='689d718acb5349ae8856f21bbd518437',
                                        redirect_uri='http://localhost/')
     spotify = spotipy.Spotify(auth=token)
-    top_month_id = '4Bb3DFSGOgamSYfnKpVJ8S'
-    top_all_id = '3qImki1ZEdujDkcrlCY9QB'
+    top_month_id = '71AyPsoyXyUKKwotbtUiGV'
+    top_all_id = '638yJOi5cBzb7m8KMR8omR'
     while True:
         titles = []
         for submission in subreddit.top('month', limit=None):
@@ -103,6 +103,7 @@ def main():
         # Remove (Extra Info) common tags from unfound list
         unfounds = list(map(remove_extra_info, unfounds))
         unfounds = spotify_search_and_add(spotify, unfounds, top_month_id, username)
+        titles = []
         for submission in subreddit.top('all', limit=None):
             if (submission.media is not None
                 and valid_artist_and_song(submission.title,
