@@ -3,6 +3,7 @@ import spotipy
 import spotipy.util as util
 import re
 import time
+import os
 
 
 # Songs should be in the format:
@@ -68,23 +69,32 @@ def spotify_search_and_add(spotify, titles, playlist_id, username):
                 results = spotify.user_playlist_add_tracks(username, playlist_id, [track_id])
         else:
             unfounds.append(title)
+        # Sleep in an attmept to throttle Spotify API request rate
+        time.sleep(0.1)
     return unfounds
 
 def main():
     # All reddit api info
     reddit = praw.Reddit('bot')
+    reddit = praw.Reddit(client_id=os.environ['REDDIT_CLIENT_ID'],
+                     client_secret=os.environ['REDDIT_CLIENT_SECRET'],
+                     password='',
+                     user_agent='testscript by /u/fakebot3',
+                     username='Reddit Music Bot 0.1')
     subreddit = reddit.subreddit('House')
 
     # All spotify api info
     scope = 'playlist-modify-public'
-    username = 'ry2gg4eh81ep1v42b1r6mubtw'
+    username = os.environ['SPOTIFY_USERNAME']
+    spotify_client_id = os.environ['SPOTIFY_CLIENT_ID']
+    spotify_client_secret = os.environ['SPOTIFY_CLIENT_SECRET']
     token = util.prompt_for_user_token(username, scope,
-                                       client_id='1f6597e91b714ae4abe73a175b8a76d2',
-                                       client_secret='689d718acb5349ae8856f21bbd518437',
+                                       client_id=spotify_client_id,
+                                       client_secret=spotify_client_secret,
                                        redirect_uri='http://localhost/')
     spotify = spotipy.Spotify(auth=token)
-    top_month_id = '6R8OhMVaNZxVA0LSvPndUe'
-    top_all_id = '4NyK3cLeHJGYk1Q3ax9ko6'
+    top_month_id = os.environ['SPOTIFY_MONTHLY_ID']
+    top_all_id = os.environ['SPOTIFY_ALL_ID']
     while True:
         titles = []
         for submission in subreddit.top('month', limit=None):
