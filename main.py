@@ -123,4 +123,5 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+  """Boilerplate main function call"""
+  sys.exit(main(sys.argv))
