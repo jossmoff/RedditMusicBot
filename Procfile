@@ -1,1 +1,1 @@
-worker: python main.py
+worker: run sh launch.sh
