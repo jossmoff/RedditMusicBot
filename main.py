@@ -2,6 +2,7 @@ import praw
 import spotipy
 import spotipy.util as util
 import re
+import time
 
 
 # Songs should be in the format:
@@ -124,4 +125,4 @@ def main():
 
 if __name__ == '__main__':
   """Boilerplate main function call"""
-  sys.exit(main(sys.argv))
+  main()
