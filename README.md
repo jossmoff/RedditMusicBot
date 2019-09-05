@@ -1,6 +1,7 @@
 # RedditMusicBot
 [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.png?v=103)](https://opensource.org/licenses/mit-license.php)
 <a target="_blank" href="https://www.python.org/downloads/" title="Python version"><img src="https://img.shields.io/badge/python-%3E=_3.6-green.svg"></a>
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/88f50911dac94ce1bd113cff6dd1b379)](https://www.codacy.com/app/JossMoff/RedditMusicBot?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=JossMoff/RedditMusicBot&amp;utm_campaign=Badge_Grade)
 
 🤖📻 A Reddit Music Bot template built for Heroku that automatically adds songs from subreddits to Spotify. It was built for subreddits like [r/House](https://www.reddit.com/r/House/) in order to automatically maintain a public spotify playlist under the community post guidlines.
 
