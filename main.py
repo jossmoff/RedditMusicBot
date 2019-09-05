@@ -83,8 +83,8 @@ def main():
                                        client_secret='689d718acb5349ae8856f21bbd518437',
                                        redirect_uri='http://localhost/')
     spotify = spotipy.Spotify(auth=token)
-    top_month_id = '71AyPsoyXyUKKwotbtUiGV'
-    top_all_id = '638yJOi5cBzb7m8KMR8omR'
+    top_month_id = '6R8OhMVaNZxVA0LSvPndUe'
+    top_all_id = '4NyK3cLeHJGYk1Q3ax9ko6'
     while True:
         titles = []
         for submission in subreddit.top('month', limit=None):
