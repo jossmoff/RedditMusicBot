@@ -1,1 +1,1 @@
-worker: run sh launch.sh
+worker: bash launch.sh
