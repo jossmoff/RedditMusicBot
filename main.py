@@ -36,18 +36,18 @@ def check_duplicate_track_id(spotify, spot_playlist_id, username, track_id):
 # Be it dates or just plaintext that can obscure search
 def remove_label(title):
     if '[' in title and ']' in title:
-        title = re.sub('\[([a-zA-Z0-9]|\W)*\]', '', title)
+        title = re.sub(r'\[([a-zA-Z0-9]|\W)*\]', '', title)
     return title
 
 def remove_date(title):
     if '(' in title and ')' in title:
-        title = re.sub('\([0-9]*\)', '', title)
+        title = re.sub(r'\([0-9]*\)', '', title)
     return title
 
 # Last case if things can't be found usually because of extra info
 def remove_extra_info(title):
     if '(' in title and ')' in title:
-        title = re.sub('\(([a-zA-Z0-9]|\W)*\)', '', title)
+        title = re.sub(r'\(([a-zA-Z0-9]|\W)*\)', '', title)
         title = remove_extra_info(title)
     return title
 
