@@ -73,9 +73,9 @@ def main():
     reddit = praw.Reddit(client_id=os.environ['REDDIT_CLIENT_ID'],
                      client_secret=os.environ['REDDIT_CLIENT_SECRET'],
                      password='',
-                     user_agent='testscript by /u/fakebot3',
-                     username='Reddit Music Bot 0.1')
-    subreddit = reddit.subreddit('House')
+                     user_agent='Reddit Music Bot 0.1',
+                     username='')
+    subreddit = reddit.subreddit(os.environ['SUBREDDIT'])
 
     # All spotify api info
     scope = 'playlist-modify-public'
@@ -132,5 +132,4 @@ def main():
 
 
 if __name__ == '__main__':
-  """Boilerplate main function call"""
-  main()
+    main()
