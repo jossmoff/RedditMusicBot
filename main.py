@@ -65,7 +65,7 @@ def spotify_search_and_add(spotify, titles, playlist_id, username):
             unfounds.append(title)
         # Sleep in an attmept to throttle Spotify API request rate
         time.sleep(0.1)
-    return unfounds
+    return unfounds, spotify
 
 def main():
     # All reddit api info
@@ -102,13 +102,13 @@ def main():
                 and track_id_check(submission.title)):
 
                 titles.append(submission.title)
-        unfounds = spotify_search_and_add(spotify, titles, top_month_id, username)
+        unfounds, spotify = spotify_search_and_add(spotify, titles, top_month_id, username)
         # Remove (Date) and [Label] common tags from unfound list
         unfounds = list(map(remove_date, list(map(remove_label, unfounds))))
-        unfounds = spotify_search_and_add(spotify, unfounds, top_month_id, username)
+        unfounds, spotify = spotify_search_and_add(spotify, unfounds, top_month_id, username)
         # Remove (Extra Info) common tags from unfound list
         unfounds = list(map(remove_extra_info, unfounds))
-        unfounds = spotify_search_and_add(spotify, unfounds, top_month_id, username)
+        unfounds, spotify = spotify_search_and_add(spotify, unfounds, top_month_id, username)
         titles = []
         for submission in subreddit.top('all', limit=None):
             if (submission.media is not None
@@ -119,13 +119,13 @@ def main():
                 and track_id_check(submission.title)):
 
                 titles.append(submission.title)
-        unfounds = spotify_search_and_add(spotify, titles, top_all_id, username)
+        unfounds, spotify = spotify_search_and_add(spotify, titles, top_all_id, username)
         # Remove (Date) and [Label] common tags from unfound list
         unfounds = list(map(remove_date, list(map(remove_label, unfounds))))
-        unfounds = spotify_search_and_add(spotify, unfounds, top_all_id, username)
+        unfounds, spotify = spotify_search_and_add(spotify, unfounds, top_all_id, username)
         # Remove (Extra Info) common tags from unfound list
         unfounds = list(map(remove_extra_info, unfounds))
-        unfounds = spotify_search_and_add(spotify, unfounds, top_all_id, username)
+        unfounds, spotify = spotify_search_and_add(spotify, unfounds, top_all_id, username)
         # Waits an hour then refreshes
         time.sleep(3600)
 
