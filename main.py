@@ -64,7 +64,7 @@ def spotify_search_and_add(spotify, titles, playlist_id, username):
         else:
             unfounds.append(title)
         # Sleep in an attmept to throttle Spotify API request rate
-        time.sleep(0.1)
+        time.sleep(0.5)
     return unfounds, spotify
 
 def main():
@@ -89,6 +89,8 @@ def main():
     spotify = spotipy.Spotify(auth=token)
     top_month_id = os.environ['SPOTIFY_MONTHLY_ID']
     top_all_id = os.environ['SPOTIFY_ALL_ID']
+    month_upvote_treshold = int(os.environ['MONTH_UPVOTE_THRESHOLD'])
+    all_upvote_treshold = int(os.environ['ALL_UPVOTE_THRESHOLD'])
 
     #Main App Loop
     while True:
@@ -97,7 +99,7 @@ def main():
             if (submission.media is not None
                 and valid_artist_and_song(submission.title,
                                           submission.media)
-                and submission.score >= 10
+                and submission.score >= month_upvote_treshold
                 and non_BMP_check(submission.title)
                 and track_id_check(submission.title)):
 
@@ -114,7 +116,7 @@ def main():
             if (submission.media is not None
                 and valid_artist_and_song(submission.title,
                                           submission.media)
-                and submission.score >= 50
+                and submission.score >= all_upvote_treshold
                 and non_BMP_check(submission.title)
                 and track_id_check(submission.title)):
 
