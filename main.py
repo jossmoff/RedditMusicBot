@@ -26,10 +26,16 @@ def non_BMP_check(title):
 def track_id_check(title):
     return not ('TRACK ID' in title.upper() or 'TRACKID' in title.upper())
 
+
 # Checks to see the song isn't in the playlist already
+# Now have to handle for paginated results
 def check_duplicate_track_id(spotify, spot_playlist_id, username, track_id):
-    results = spotify.user_playlist_tracks(username, playlist_id=spot_playlist_id, limit=1000)
-    return (track_id in str(results))
+    results = spotify.user_playlist_tracks(username, playlist_id=spot_playlist_id, limit=None)
+    tracks = results['items']
+    while results['next']:
+        results = spotify.next(results)
+        tracks.extend(results['items'])
+    return (track_id in str(tracks))
 
 
 # Tracks can not be found based on extra info being added on the end
