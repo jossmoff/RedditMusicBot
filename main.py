@@ -28,7 +28,7 @@ def track_id_check(title):
 
 # Checks to see the song isn't in the playlist already
 def check_duplicate_track_id(spotify, spot_playlist_id, username, track_id):
-    results = spotify.user_playlist_tracks(username, playlist_id=spot_playlist_id, limit=None)
+    results = spotify.user_playlist_tracks(username, playlist_id=spot_playlist_id, limit=1000)
     return (track_id in str(results))
 
 
