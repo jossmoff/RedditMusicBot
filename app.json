@@ -1,0 +1,66 @@
+{
+  "name": "RedditMusicBot",
+  "description": "A Reddit Music Bot template built for Heroku that automatically adds songs from subreddits to Spotify.",
+  "keywords": [
+    "Reddit",
+    "bot",
+    "music",
+    "spotify"
+  ],
+  "website": "https://open.spotify.com/user/ry2gg4eh81ep1v42b1r6mubtw?si=lOdS_IiUTCmgQHWyh-2zbg",
+  "env": {
+    "REDDIT_USERNAME": {
+      "description": "The username of your Reddit bot",
+      "required": true
+    },
+    "REDDIT_PASSWORD": {
+      "description": "The password of your Reddit bot",
+      "required": true
+    },
+    "REDDIT_USER_AGENT": {
+      "description": "The user agent of your Reddit bot. Needed for Reddit admins to identify who you are. It is recommended that you include your Reddit main account here.",
+      "value": "/u/<your main account>'s Music Reddit Bot",
+      "required": true
+    },
+    "REDDIT_CLIENT_ID": {
+      "description": "The client id of your Reddit application",
+      "required": true
+    },
+    "REDDIT_CLIENT_SECRET": {
+      "description": "The client secret of your Reddit application",
+      "required": true
+    },
+    "SUBREDDIT": {
+      "description": "The subreddit(s) your bot is running on.",
+      "required": true
+    },
+    "SPOTIFY_USERNAME": {
+      "description": "The username of your Spotify account",
+      "required": true
+    },
+    "SPOTIFY_CLIENT_ID": {
+      "description": "The client id of your Spotify application",
+      "required": true
+    },
+    "SPOTIFY_CLIENT_SECRET": {
+      "description": "The client secret of your Spotify application",
+      "required": true
+    },
+    "SPOTIFY_MONTHLY_ID": {
+      "description": "The monthly playlist id of your spotify playlist",
+      "required": true
+    },
+    "SPOTIFY_ALL_ID": {
+      "description": "The all-time playlist id of your spotify playlist",
+      "required": true
+    },
+    "MONTH_UPVOTE_THRESHOLD": {
+      "description": "The monthly upvote threshold needed for the song to be added to the monthly playlist",
+      "required": true
+    },
+    "ALL_UPVOTE_THRESHOLD": {
+      "description": "The all-time upvote threshold needed for the song to be added to the all-time playlist",
+      "required": true
+    }
+  }
+}

@@ -78,9 +78,9 @@ def main():
     reddit = praw.Reddit('bot')
     reddit = praw.Reddit(client_id=os.environ['REDDIT_CLIENT_ID'],
                      client_secret=os.environ['REDDIT_CLIENT_SECRET'],
-                     password='',
-                     user_agent='Reddit Music Bot 0.1',
-                     username='')
+                     password=os.environ['REDDIT_PASSWORD'],
+                     user_agent=os.environ['REDDIT_USER_AGENT'],
+                     username=os.environ['REDDIT_USERNAME'])
     subreddit = reddit.subreddit(os.environ['SUBREDDIT'])
 
     # All spotify api info
