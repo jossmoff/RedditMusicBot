@@ -75,7 +75,6 @@ def spotify_search_and_add(spotify, titles, playlist_id, username):
 
 def main():
     # All reddit api info
-    reddit = praw.Reddit('bot')
     reddit = praw.Reddit(client_id=os.environ['REDDIT_CLIENT_ID'],
                      client_secret=os.environ['REDDIT_CLIENT_SECRET'],
                      password=os.environ['REDDIT_PASSWORD'],
