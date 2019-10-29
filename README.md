@@ -29,7 +29,8 @@ All you need to do is
  5. Follow [arska](https://github.com/arska)'s [tutorial](https://github.com/arska/srf2spotify#usage) for filling in the SPOTIPY_CACHE detials.
  6. Fill all these details in at  Heroku Dashboard > Settings
 
-![enter image description here](https://lh3.googleusercontent.com/-JoMxbhxvUmBPMhRg-8WdjPXn0exa_sAALH7__m-UGT6egnN1hZit7mF2hUhAxRL_e-J86DI4rDo)
+![Heroku Enviroment Variable Names](https://user-images.githubusercontent.com/18033169/66720652-128aae80-ee00-11e9-9306-691f1757b0a0.png)
+> Note:  UPVOTE_THRESHOLD variables are the number of upvotes recquired to make it onto the respective spotify playlist.
 ## How it works - Valid Title and Media
 We work under the premise that every post that is a track submission contains the artist and track name in the title, usually in this format:
 > (Artist) - (Title)
