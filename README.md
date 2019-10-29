@@ -17,7 +17,9 @@ Now you need to deploy in your Heroku Dashboard - I would **personally** recomme
 
 ## Setting Heroku Enviroment Variables
 
-You must set the values of these config vars in order for the deployment to work. 
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+
+You must set the values of these config vars in order for the deployment to work.
 All you need to do is
 
  1. [Create A Reddit Developer Application](https://www.reddit.com/prefs/apps/)
@@ -27,7 +29,7 @@ All you need to do is
  5. Follow [arska](https://github.com/arska)'s [tutorial](https://github.com/arska/srf2spotify#usage) for filling in the SPOTIPY_CACHE detials.
  6. Fill all these details in at  Heroku Dashboard > Settings
 
-![enter image description here](https://lh3.googleusercontent.com/-JoMxbhxvUmBPMhRg-8WdjPXn0exa_sAALH7__m-UGT6egnN1hZit7mF2hUhAxRL_e-J86DI4rDo) 
+![enter image description here](https://lh3.googleusercontent.com/-JoMxbhxvUmBPMhRg-8WdjPXn0exa_sAALH7__m-UGT6egnN1hZit7mF2hUhAxRL_e-J86DI4rDo)
 ## How it works - Valid Title and Media
 We work under the premise that every post that is a track submission contains the artist and track name in the title, usually in this format:
 > (Artist) - (Title)
@@ -73,7 +75,7 @@ def remove_date(title):
 
 unfounds = list(map(remove_date, list(map(remove_label, unfounds))))
 ```
- 
+
 
  However the last one, if the info in the brackets e.g (Four Tet Remix) this is important as the user is specifically looking for the specific remix of the track. Therefore we apply the first two functions **seperately** and **before** we apply the last one so that we can identify as many songs as possible before having to remove potentially important data.
 
@@ -86,7 +88,7 @@ def remove_extra_info(title):
 
 unfounds = list(map(remove_extra_info, unfounds))
 ```
-## Effectiveness 
+## Effectiveness
 
 Using a heuristic to measure performance, out of all the posts the Reddit API returns we can not find only 1% of them. This is extremly marginal and could just be because alot aren't on Spotify.
 
@@ -97,7 +99,7 @@ Using a different heuristic to measure performance out of the posts the bot iden
  - Tracks not being found on Spotify
  - Tracks not actually being correctly identified e.g *Live sets*
 
-## Improvements 
+## Improvements
 
 The key factors I aim to improve are:
 
