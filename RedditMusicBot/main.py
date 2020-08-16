@@ -77,7 +77,7 @@ def main():
     # All reddit api info
     reddit = praw.Reddit(client_id=os.environ['REDDIT_CLIENT_ID'],
                      client_secret=os.environ['REDDIT_CLIENT_SECRET'],
-                     password=os.environ['REDDIT_PASSWORD'],
+                     password="",
                      user_agent=os.environ['REDDIT_USER_AGENT'],
                      username=os.environ['REDDIT_USERNAME'])
     subreddit = reddit.subreddit(os.environ['SUBREDDIT'])
