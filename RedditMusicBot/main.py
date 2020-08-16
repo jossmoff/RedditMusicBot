@@ -79,7 +79,7 @@ def main():
                      client_secret=os.environ['REDDIT_CLIENT_SECRET'],
                      password="",
                      user_agent="Reddit Music Bot",
-                     username=os.environ['REDDIT_USERNAME'])
+                     username="Reddit Music Bot 0.1")
     subreddit = reddit.subreddit(os.environ['SUBREDDIT'])
 
     # All spotify api info
