@@ -1,1 +1,1 @@
-worker: bash launch.sh
+worker: bash RedditMusicBot/launch.sh
